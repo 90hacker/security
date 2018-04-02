@@ -6,8 +6,11 @@ package cn.xiaoyh.enums;
  * @date 2018/3/13 13:15
  */
 public enum BizRetCode {
+    //登录的token为空异常！
     USER_TO_KEY_IS_NULL(-101,"token不能为空！"),
+    //token失效或过期异常！
     USER_TO_KEY_MATURITY(-102,"token失效，请重新登录！"),
+    //数据库中已存在该记录！
     RECORD_DATA_EXISTED(-103,"数据库中已存在该记录！");
 
     private int code;

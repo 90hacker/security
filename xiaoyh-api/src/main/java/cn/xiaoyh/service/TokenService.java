@@ -14,7 +14,11 @@ import com.baomidou.mybatisplus.service.IService;
  * @date 2017-03-23 15:22:07
  */
 public interface TokenService extends IService<TokenEntity> {
-
+    /**
+     * 通过token查询用户信息
+     * @param token
+     * @return
+     */
 	TokenEntity queryByToken(String token);
 
 	/**

@@ -35,7 +35,7 @@ public class SysDeptController extends AbstractController {
 	@RequestMapping("/list")
 	@RequiresPermissions("sys:dept:list")
 	public List<SysDeptEntity> list(){
-		List<SysDeptEntity> deptList = sysDeptService.queryList(new HashMap<String, Object>());
+		List<SysDeptEntity> deptList = sysDeptService.queryList(null);
 
 		return deptList;
 	}
@@ -46,7 +46,7 @@ public class SysDeptController extends AbstractController {
 	@RequestMapping("/select")
 	@RequiresPermissions("sys:dept:select")
 	public R select(){
-		List<SysDeptEntity> deptList = sysDeptService.queryList(new HashMap<String, Object>());
+		List<SysDeptEntity> deptList = sysDeptService.queryList(null);
 
 		//添加一级部门
 		if(getUserId() == Constant.SUPER_ADMIN){
@@ -69,7 +69,7 @@ public class SysDeptController extends AbstractController {
 	public R info(){
 		long deptId = 0;
 		if(getUserId() != Constant.SUPER_ADMIN){
-			List<SysDeptEntity> deptList = sysDeptService.queryList(new HashMap<String, Object>());
+			List<SysDeptEntity> deptList = sysDeptService.queryList(null);
 			Long parentId = null;
 			for(SysDeptEntity sysDeptEntity : deptList){
 				if(parentId == null){

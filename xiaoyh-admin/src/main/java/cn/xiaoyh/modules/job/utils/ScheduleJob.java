@@ -6,6 +6,7 @@ import cn.xiaoyh.common.utils.SpringContextUtils;
 import cn.xiaoyh.modules.job.entity.ScheduleJobEntity;
 import cn.xiaoyh.modules.job.entity.ScheduleJobLogEntity;
 import cn.xiaoyh.modules.job.service.ScheduleJobLogService;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.apache.commons.lang.StringUtils;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -14,9 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import java.util.Date;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 
 /**
@@ -27,8 +26,12 @@ import java.util.concurrent.Future;
  */
 public class ScheduleJob extends QuartzJobBean {
 	private Logger logger = LoggerFactory.getLogger(getClass());
-	private ExecutorService service = Executors.newSingleThreadExecutor(); 
-	
+    ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+            .setNameFormat("thread-pool-%d").build();
+    private ExecutorService service = new ThreadPoolExecutor(1, 3,
+            0L, TimeUnit.MILLISECONDS,
+            new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+
     @Override
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
         ScheduleJobEntity scheduleJob = (ScheduleJobEntity) context.getMergedJobDataMap()

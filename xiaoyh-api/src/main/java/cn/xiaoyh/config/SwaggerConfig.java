@@ -18,6 +18,9 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
+/**
+ * @author 肖云惠
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {

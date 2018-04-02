@@ -13,7 +13,7 @@ import java.util.Map;
  * @date 2017/8/19 1:03
  */
 public class DynamicDataSource extends AbstractRoutingDataSource {
-    private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();
+    private static final ThreadLocal<String> CONTEXT_HOLDER = new ThreadLocal<>();
 
     public DynamicDataSource(DataSource defaultTargetDataSource, Map<String, DataSource> targetDataSources) {
         super.setDefaultTargetDataSource(defaultTargetDataSource);
@@ -27,15 +27,15 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     }
 
     public static void setDataSource(String dataSource) {
-        contextHolder.set(dataSource);
+        CONTEXT_HOLDER.set(dataSource);
     }
 
     public static String getDataSource() {
-        return contextHolder.get();
+        return CONTEXT_HOLDER.get();
     }
 
     public static void clearDataSource() {
-        contextHolder.remove();
+        CONTEXT_HOLDER.remove();
     }
 
 }

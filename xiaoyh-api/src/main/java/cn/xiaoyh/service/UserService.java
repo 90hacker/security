@@ -17,6 +17,11 @@ import java.util.Map;
  */
 public interface UserService extends IService<UserEntity> {
 
+    /**
+     * 通过手机号码查询用户信息
+     * @param mobile
+     * @return
+     */
 	UserEntity queryByMobile(String mobile);
 
 	/**

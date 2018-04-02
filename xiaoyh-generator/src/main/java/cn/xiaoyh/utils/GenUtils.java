@@ -79,7 +79,7 @@ public class GenUtils {
 			//列的数据类型，转换成Java类型
 			String attrType = config.getString(columnEntity.getDataType(), "unknowType");
 			columnEntity.setAttrType(attrType);
-			if (!hasBigDecimal && attrType.equals("BigDecimal" )) {
+			if (!hasBigDecimal && "BigDecimal".equals(attrType)) {
 				hasBigDecimal = true;
 			}
 			//是否主键
@@ -105,7 +105,7 @@ public class GenUtils {
 		mainPath = StringUtils.isBlank(mainPath) ? "cn.xiaoyh" : mainPath;
 		
 		//封装模板数据
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(14);
 		map.put("tableName", tableEntity.getTableName());
 		map.put("comments", tableEntity.getComments());
 		map.put("pk", tableEntity.getPk());

@@ -1,5 +1,6 @@
 package cn.xiaoyh.modules.oss.cloud;
 
+import cn.xiaoyh.common.base.BaseService;
 import cn.xiaoyh.common.utils.DateUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -13,7 +14,7 @@ import java.util.UUID;
  * @email sunlightcs@gmail.com
  * @date 2017-03-25 14:58
  */
-public abstract class CloudStorageService {
+public abstract class CloudStorageService extends BaseService {
     /** 云存储配置信息 */
     CloudStorageConfig config;
 

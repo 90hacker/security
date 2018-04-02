@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.UUID;
 
-
+/**
+ * @author 肖云惠
+ */
 @Service("tokenService")
 public class TokenServiceImpl extends ServiceImpl<TokenDao, TokenEntity> implements TokenService {
 	/**
